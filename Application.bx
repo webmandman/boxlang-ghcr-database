@@ -1,0 +1,8 @@
+class {
+	this.name = "boxlang test app";
+
+	function onApplicationStart(){
+		application.test = true;
+	}
+
+}

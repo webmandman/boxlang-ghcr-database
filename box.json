@@ -1,0 +1,12 @@
+{
+    "scripts":{
+        "start":"server start",
+        "restart":"server restart",
+        "debug":"server start --debug --console --trace",
+        "restart debug":"server start --debug --console --trace",
+        "stop":"server stop",
+        "info":"info"
+    },
+    "dependencies":{},
+    "installPaths":{}
+}
