@@ -186,7 +186,7 @@ What did you accomplish?
     1. Local commandbox testing
     2. Local docker container testing
     3. Render.com (Production)
-4. How to install postgresql commandbox module using leveraging container environment variable `BOXLANG_MODULES`
+4. How to extend the base boxlang:miniserver docker image by install postgresql commandbox module leveraging the container environment variable `BOXLANG_MODULES`. In steps 6.6 and 7.3.1 this is where you tell commandbox onStartup to download and install the postgresql module into the server. In the future, I'd like to look into creating my own docker images that already include all the dependencies and not only that also warm up the server to improve the deployment speed from over 1 minute to less than 20 seconds.
 5. How to use the commandbox install script `onServerInitialinstall`
 6. How to use a couple docker terminal commands
 
