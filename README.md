@@ -1,4 +1,4 @@
-# Part 2: Boxlang - AWS Database 
+# Part Two: Boxlang, AWS Database, and Environment Variables
 
 Part one of this series starts here: https://github.com/webmandman/boxlang-ghcr-test 
 
@@ -20,7 +20,7 @@ In this part of the series, the app will query a PostgreSQL database at zero cos
 ### 1. Create a database in AWS
 
 1. Login to the AWS Console and go to RDS Services
-2. Create a new database:
+2. Create a new database. All settings I do not mention you can leave alone or in their default state. Make sure **Estimated monthly costs** states its RDS Free Tier and/or there is zero cost estimated. 
     1. Choose the Standard Create method
     2. Choose PostgreSQL or any DB of your choice
     3. Under Templates, choose Free Tier
@@ -36,9 +36,6 @@ In this part of the series, the app will query a PostgreSQL database at zero cos
     13. Monitoring: free-tier
     14. Additional configuration: Enter a name for the initial database, e.g., postgres
     15. Click the Create database button.
-
-All other settings I do not mention you can leave alone or in their default state. Make sure **Estimated monthly costs** states its RDS Free Tier and/or there is zero cost estimated. 
-
 
 3. Database security
 
