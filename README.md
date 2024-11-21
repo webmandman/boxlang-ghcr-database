@@ -1,15 +1,13 @@
 # Part Two: Boxlang, AWS Database, and Environment Variables
 
-Part one of this series starts here: https://github.com/webmandman/boxlang-ghcr-test 
-
-In this part of the series, the app will query a PostgreSQL database at zero cost.
+In this part of the series, the app will query an AWS RDS PostgreSQL database. Be aware that Amazon will require a credit card, but you will have a free tier option that will last 12 months from creation.
 
 ---
 
 ## Requirements
 
-0. The code from part one of this series
-1. [Amazon AWS Database](https://aws.amazon.com/free/database/)
+0. The code from [Part One](https://github.com/webmandman/boxlang-ghcr-test)
+1. [Amazon RDS Database](https://aws.amazon.com/free/database/)
 2. Database Host Endpoint
 3. Database Username and Password
 4. Forgebox Module: [commandbox-dotenv](https://forgebox.io/view/commandbox-dotenv)
@@ -79,8 +77,8 @@ class {
     - mariadb
     - derby
   4. Host url and port are found under Connectivity & Security in your database's settings page in AWS.
-  5. The password setting value is set to `${env.DB_PASSWORD}`. Leave it as is. Boxlang will expand this to the environment variable you will next set in the next steps.
-  6. The username setting is the same as the name in step 1.5
+  5. The password setting value is set to `${env.DB_PASSWORD}`. Leave it as is. Boxlang will expand this to the environment variable you will set in the next steps.
+  6. The username setting is the same as the name in step 2.5
 
   ### 3. Create your first PostgreSQL database table using pgAdmin
 
@@ -105,7 +103,7 @@ ALTER TABLE IF EXISTS public.testtable
 
 ### 4. Add a query to your application
 
-Open up index.bxm, and add one query to the top of the file and one dump in your html:
+Open up index.bxm, and add one query to the top of the file and one dump in your html body:
 
 ```
 <bx:script>
