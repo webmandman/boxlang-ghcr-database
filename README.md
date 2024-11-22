@@ -41,6 +41,7 @@ In this part of the series, the app will query an AWS RDS PostgreSQL database. B
     2. In the list of groups, you should only see one. Click on the same name again.
     3. Under Inbound rules, make sure the version is `IPv4`, Type is `All traffic`, Protocol is `All`, Port range is `All`, and Source is `0.0.0.0/0`
     4. If the rule is not exactly that, then edit the rule to match the settings I specified. Of course, you can set it to whatever you want. For instance, you can get a range of IPs from your Web Service at Render.com and specify only those IPs in this Security rule so that anything/anyone else is blocked.
+       * it will not let you add the 0.0.0.0/0 to an existing rule, you have to make a new rule, then delete the old one.
 
 ### 2. Create a Datasource for your boxlang application
 
@@ -84,6 +85,8 @@ class {
 
   Since this example application is built with PostgreSQL we are using the database client desktop app called pgAdmin. You can use which ever client is best for you or your database type.
 
+  * if you just changed security setting, it might take a few minutes before aws allows connection to it.
+
   In pgAdmin I connected to my database with all the same settings from step 2, and ran the following script to create my first table:
 
 ```
@@ -125,7 +128,6 @@ qry = QueryExecute(
 ```
 
 ### 5. Password Env Var for Local Commandbox Testing
-
 1.  Create an .env file at the root of your application and add this line `DB_PASSWORD=******` with your actual password.
 2. Run this commandbox command `install commandbox-dotenv` so that commandbox knows you need your environment variables loaded into the server application.
 3. Run this commandbox to install the postgresql boxlang module `install bx-postgresql`. To ensure you never forget to install this module lets user the `onServerInitialInstall` script. Make sure your server.json file looks like this:
@@ -156,13 +158,13 @@ Recap: To test locally with commandbox all you needed was
 6. Start the server
 
 ### 6. Pass Env Var for Local Docker Testing
-
+* this section is not required for deploy, just testing it in docker
 1. dockerfile requires zero changes at this point.
 2. The application is ready to run a query.
 3. We simply need to build a docker image and run it with the DB_PASSWORD environment variable
 4. If you don't already have Docker Desktop with terminal access installed go do that now.
 5. Run this command from the root of your application to build your image from the dockerfile `docker built -t MY_DOCKER_IMAGE_NAME .`
-6. Run this command to spin up the container `docker un --name MY_CONTAINER_NAME -e DB_PASSWORD=******** -e BOXLANG_MODULES=bx-postgresql -p :8080 MY_DOCKER_IMAGE_NAME_FROM_PREVIOUS_STEP`. Notice we are passing 2 environment variables to the container (the password and the required module for our query to work). Also the -p param is for the host port and the container port, but I only specified the container port 8080 - docker will assign a random port number on the host(your computer).
+6. Run this command to spin up the container `docker run --name MY_CONTAINER_NAME -e DB_PASSWORD=******** -e BOXLANG_MODULES=bx-postgresql -p :8080 MY_DOCKER_IMAGE_NAME_FROM_PREVIOUS_STEP`. Notice we are passing 2 environment variables to the container (the password and the required module for our query to work). Also the -p param is for the host port and the container port, but I only specified the container port 8080 - docker will assign a random port number on the host(your computer).
 
 ### 7. Pass Env Var for Render.com Production Deployment
 
