@@ -5,10 +5,10 @@ class {
         "bxawstest" = {
             "database": "postgres",
             "driver": "postgresql",
-            "host": "boxlang-test1.ct2mgg8ear8b.us-east-1.rds.amazonaws.com",
-            "password": "${env.DB_PASSWORD}",
+            "host": "${env.BOXLANGTEST1_AWS_DB_HOST}",
+            "password": "${env.BOXLANGTEST1_AWS_DB_PASSWORD}",
             "port": "5432",
-            "username": "main"
+            "username": "${env.BOXLANGTEST1_AWS_DB_USER}"
         }
     }
 
